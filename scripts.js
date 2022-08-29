@@ -1,7 +1,6 @@
 import ancientsData from './data/ancients.js';
 import difficulties from './data/difficulties.js';
 
-
 //card
 
 const ancientsContainer = document.querySelector('.ancients-container');
@@ -22,18 +21,17 @@ const activeCard = (num) => {
     card[num].classList.add('active')
 }
 
-let cardNum = 0;
 let visibleDiff = false;
 
 card.forEach((el, i) => {
     el.addEventListener('click', () => {
         activeCard(i);
-        console.log(cardNum)
+        shuffleStages(i)
+        dotsNum()
         if(!visibleDiff){
             createDifficulties() 
             visibleDiff = true;
             activeDifficulty()
-            cardNum = i
         }
     })
 })
@@ -98,8 +96,6 @@ const clickShuffleBtn = () => {
 
 const stageContainer = document.querySelectorAll('.stage-container');
 
-const dot = document.querySelectorAll('.dot');
-
 import greenCardsData from './data/mythicCards/green/index.js';
 import brownCardsData from './data/mythicCards/brown/index.js';
 import blueCardsData from './data/mythicCards/blue/index.js';
@@ -107,25 +103,29 @@ import blueCardsData from './data/mythicCards/blue/index.js';
 const deckCard = []
 
 const dotsNum = () => {
-   stageContainer.forEach((el, i) => {
+    stageContainer.forEach((el, i) => {
         const dotGreen = el.querySelector('.green');
         const dotBrown = el.querySelector('.brown');
         const dotBlue = el.querySelector('.blue');
         let green = []
         let brown = []
         let blue = []
-        deckCard[i].forEach((el, n) => {
-            let col = el.color
-            if(col == 'green'){
-                green.push(el)
-            }
-            if(col == 'brown'){
-                brown.push(el)
-            }
-            if(col == 'blue'){
-                blue.push(el)
-            }
-        })
+        if(typeof deckCard[i] == 'undefined'){
+            return
+        }else{
+            deckCard[i].forEach((el, n) => {
+                let col = el.color
+                if(col == 'green'){
+                    green.push(el)
+                }
+                if(col == 'brown'){
+                    brown.push(el)
+                }
+                if(col == 'blue'){
+                    blue.push(el)
+                }
+            })
+        }
         dotGreen.textContent = green.length
         dotBrown.textContent = brown.length
         dotBlue.textContent = blue.length
@@ -146,28 +146,32 @@ const getCardFromDeck = (arr) => {
     return deckCard.push(arr)
 }
 
-const shuffleStages = () => {
-    for(let i = 0; i < 3; i++){
-        let stage;
-        if(i == 0){
-            stage = ancientsData[cardNum].firstStage;
+const shuffleStages = (cardNum) => {
+    if(typeof cardNum == 'undefined'){
+        return
+    }else{
+
+        for(let i = 0; i < 3; i++){
+            let stage;
+            if(i == 0){
+                stage = ancientsData[cardNum].firstStage;
+            }
+            if(i == 1){
+                stage = ancientsData[cardNum].secondStage;
+            }
+            if(i == 2){
+                stage = ancientsData[cardNum].thirdStage;
+            }
+            let green = shuffleCards(greenCardsData, stage.greenCards)
+            let brown = shuffleCards(brownCardsData, stage.brownCards)
+            let blue = shuffleCards(blueCardsData, stage.blueCards)
+            let level = [].concat(green, brown, blue)
+            getCardFromDeck(level)
         }
-        if(i == 1){
-            stage = ancientsData[cardNum].secondStage;
-        }
-        if(i == 2){
-            stage = ancientsData[cardNum].thirdStage;
-        }
-        let green = shuffleCards(greenCardsData, stage.greenCards)
-        let brown = shuffleCards(brownCardsData, stage.brownCards)
-        let blue = shuffleCards(blueCardsData, stage.blueCards)
-        let level = [].concat(green, brown, blue)
-        getCardFromDeck(level)
     }
 }
 shuffleStages()
 dotsNum()
-
 
 const showLastCard = () => {
     for(let i = 0; i < deckCard.length; i++){

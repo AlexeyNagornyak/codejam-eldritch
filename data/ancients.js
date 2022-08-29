@@ -21,7 +21,7 @@ const ancientsData = [
       brownCards: 4,
     },
   },
-  /*{
+  {
     id: 'cthulhu',
     name: 'cthulhu',
     cardFace: Ancients.cthulhu,
@@ -80,7 +80,7 @@ const ancientsData = [
       blueCards: 0,
       brownCards: 4,
     },
-  },*/
+  },
 ]
 
 export default ancientsData
