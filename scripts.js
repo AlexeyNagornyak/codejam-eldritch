@@ -24,14 +24,16 @@ const activeCard = (num) => {
 let visibleDiff = false;
 
 card.forEach((el, i) => {
-    el.addEventListener('click', () => {
+    el.addEventListener('click', (e) => {
         activeCard(i);
-        shuffleStages(i)
-        dotsNum()
-        if(!visibleDiff){
-            createDifficulties() 
-            visibleDiff = true;
-            activeDifficulty()
+        if(e.target.classList.contein('active')){
+            if(!visibleDiff){
+                shuffleStages(i)
+                dotsNum()
+                createDifficulties() 
+                visibleDiff = true;
+                activeDifficulty()
+            }
         }
     })
 })
@@ -150,7 +152,6 @@ const shuffleStages = (cardNum) => {
     if(typeof cardNum == 'undefined'){
         return
     }else{
-
         for(let i = 0; i < 3; i++){
             let stage;
             if(i == 0){
