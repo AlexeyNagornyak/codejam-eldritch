@@ -1,0 +1,133 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.bg-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+    height: 100vh;
+    width: 100vw;
+    background: url("assets/home.png") no-repeat 50%/cover;
+}
+
+.ancients-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    min-height: 40%;
+    padding: 20px;
+}
+
+.ancient-card {
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    box-sizing: border-box;
+    cursor: pointer;
+    height: 260px;
+    width: 200px;
+}
+
+.active {
+    border: 2px solid red;
+}
+
+.difficulty-container{
+    display: flex;
+    gap: 20px;
+}
+
+.difficulty {
+    padding: 5px;
+    border: 2px solid white;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+}
+
+.diff-active {
+    background-color: red;
+}
+
+.desk-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    min-height: 30%;
+}
+
+.shuffle-btn {
+    padding: 5px;
+    border: 2px solid white;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    background-color: red;
+}
+
+.curent-state {
+    display: none;
+}
+
+.stage-container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.stage-text {
+    color: white;
+}
+
+.dots-container {
+    align-items: center;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.dot {
+    align-items: center;
+    border-radius: 50%;
+    display: flex;
+    height: 30px;
+    justify-content: center;
+    width: 30px;
+}
+
+.green {
+    background-color: green;
+}
+
+.brown {
+    background-color:  brown;
+}
+
+.blue {
+    background-color: blue;
+}
+
+.deck,
+.last-card  {
+    display: none;
+    background-size: cover;
+    height: 190px;
+    width: 130px;
+}
+
+.deck {
+    cursor: pointer;
+}
+
+.show {
+    display: block;
+}
