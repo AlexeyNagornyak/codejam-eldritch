@@ -24,17 +24,15 @@ const activeCard = (num) => {
 let visibleDiff = false;
 
 card.forEach((el, i) => {
-    el.addEventListener('click', (e) => {
-        activeCard(i);
-        if(e.target.classList.contein('active')){
-            if(!visibleDiff){
-                shuffleStages(i)
-                dotsNum()
-                createDifficulties() 
-                visibleDiff = true;
-                activeDifficulty()
-            }
+    el.addEventListener('click', () => {
+        if(!visibleDiff){
+            shuffleStages(i)
+            dotsNum()
+            createDifficulties() 
+            visibleDiff = true;
+            activeDifficulty()
         }
+        activeCard(i);
     })
 })
 
@@ -115,7 +113,7 @@ const dotsNum = () => {
         if(typeof deckCard[i] == 'undefined'){
             return
         }else{
-            deckCard[i].forEach((el, n) => {
+            deckCard[i].forEach((el) => {
                 let col = el.color
                 if(col == 'green'){
                     green.push(el)
@@ -171,8 +169,6 @@ const shuffleStages = (cardNum) => {
         }
     }
 }
-shuffleStages()
-dotsNum()
 
 const showLastCard = () => {
     for(let i = 0; i < deckCard.length; i++){
